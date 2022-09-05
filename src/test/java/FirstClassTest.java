@@ -1,10 +1,13 @@
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Cookie;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogEntry;
+import org.openqa.selenium.logging.LogType;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.Set;
 
 public class FirstClassTest {
@@ -13,6 +16,8 @@ public class FirstClassTest {
     public void testSearchGoogle(){
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
+        driver.manage().window().setSize(new Dimension(1800, 900));
+        driver.manage().window().setPosition(new Point(100, 55));
 
 //        driver.get("http://www.google.com");
 //        WebElement searchBox = driver.findElement(By.name("q"));
@@ -35,6 +40,18 @@ public class FirstClassTest {
 
         driver.manage().deleteAllCookies();
         System.out.println("allCookies - " + driver.manage().getCookies());
+
+//        driver.manage().window().maximize();
+//        driver.manage().window().fullscreen();
+        System.out.println("getSize = " + driver.manage().window().getSize());
+        System.out.println("getPosition = " + driver.manage().window().getPosition());
+
+        Set<String> allLogsType = driver.manage().logs().getAvailableLogTypes();
+        System.out.println("allLogsType = " + allLogsType);
+
+        LogEntries logs = driver.manage().logs().get(LogType.BROWSER);
+        for (LogEntry entry : logs)
+            System.out.println("logs = " + entry);
 
         driver.quit();
     }
