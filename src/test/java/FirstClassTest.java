@@ -38,4 +38,19 @@ public class FirstClassTest {
 
         driver.quit();
     }
+
+    @Test
+    public void testFacebookLogin(){
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+
+        driver.navigate().to("https://www.facebook.com/login/");
+        WebElement loginButton = driver.findElement(By.xpath("//button[@id='loginbutton']"));
+        loginButton.click();
+
+//        WebElement signupLink = driver.findElement(By.xpath("//a[contains(@href,'r.php')]"));
+//        signupLink.click();
+
+        driver.quit();
+    }
 }
