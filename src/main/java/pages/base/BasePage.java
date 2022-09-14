@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 
 import static constants.Constant.TimeoutVariables.EXPLICIT_WAIT;
@@ -33,6 +32,9 @@ public class BasePage {
         return element;
     }
 
+    /**
+     * Check is auth frame is visible
+     */
     public void isAuthWidgetPresent(){
         WebElement authFrame = driver.findElement(authWidget);
         waitElementIsVisible(authFrame);

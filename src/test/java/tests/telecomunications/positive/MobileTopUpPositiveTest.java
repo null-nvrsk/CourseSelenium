@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import tests.base.BaseTest;
 import static constants.Constant.Urls.MOBILE_PAYMENT_URL;
 
-public class MobileTopUpTest extends BaseTest {
+public class MobileTopUpPositiveTest extends BaseTest {
 
     @Test
     public void checkIsRedirectToAuth(){
