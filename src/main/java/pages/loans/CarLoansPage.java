@@ -1,4 +1,4 @@
-package pages.car_loans;
+package pages.loans;
 
 import org.openqa.selenium.WebDriver;
 

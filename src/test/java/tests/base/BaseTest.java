@@ -7,7 +7,8 @@ import org.junit.jupiter.api.TestInstance;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import pages.base.BasePage;
-import pages.car_loans.CarLoansPage;
+import pages.loans.CarLoansPage;
+import pages.telecomunications.MobileTopUpPage;
 
 import static common.Config.CLEAR_COOKIES;
 import static common.Config.HOLD_BROWSER_OPEN;
@@ -17,6 +18,7 @@ public class BaseTest {
     protected WebDriver driver = CommonActions.createDriver();
     protected BasePage basePage = new BasePage(driver);
     protected CarLoansPage carLoansPage = new CarLoansPage(driver);
+    protected MobileTopUpPage mobileTopUpPage = new MobileTopUpPage(driver);
 
     @AfterEach
     void clearCookiesAndLocalStorage(){
