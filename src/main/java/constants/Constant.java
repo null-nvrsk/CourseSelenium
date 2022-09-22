@@ -12,9 +12,9 @@ public class Constant {
     }
 
     public static class MobileRefillTestData {
-        public static final String MOBILE_PAYMENT_PHONE_NUMBER = "123456789";
-        public static final String MOBILE_PAYMENT_CARD = "4564567890123456";
-        public static final String MOBILE_PAYMENT_CARD_EXP_DATE = "0623";
+        public static final String MOBILE_PAYMENT_PHONE_NUMBER = "993004801";
+        public static final String MOBILE_PAYMENT_CARD = "4506909324274797";
+        public static final String MOBILE_PAYMENT_CARD_EXP_DATE = "0624";
         public static final String MOBILE_PAYMENT_CARD_CVV = "666";
     }
 

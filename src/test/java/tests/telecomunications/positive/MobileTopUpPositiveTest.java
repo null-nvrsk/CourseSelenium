@@ -24,7 +24,8 @@ public class MobileTopUpPositiveTest extends BaseTest {
                 .enterCardExpDate(MOBILE_PAYMENT_CARD_EXP_DATE)
                 .enterCardCvv(MOBILE_PAYMENT_CARD_CVV)
                 .enterAmount("1")
-                .submitCart();
+                .submitCart()
+                .checkPaymentDetailsIsPresentInTheCart("Mobile payment. Phone number +380993004801");
 
     }
 }
