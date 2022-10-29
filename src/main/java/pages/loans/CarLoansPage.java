@@ -1,18 +1,17 @@
-//package pages.loans;
-//
-//import org.openqa.selenium.By;
-//import org.openqa.selenium.WebDriver;
-//
-//public class CarLoansPage {
-//    WebDriver driver;
-//    public CarLoansPage(WebDriver driver) {
-//        this.driver = driver;
-//    }
-//
-//    private final By tabAgreements = By.xpath("//div[contains(text(), 'Agreements')]");
-//
-//    public CarLoansPage selectAgreementsTab() {
-//        driver.findElement(tabAgreements).click();
-//        return this;
-//    }
-//}
+package pages.loans;
+
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
+import pages.base.BasePage;
+
+import static com.codeborne.selenide.Selenide.$x;
+
+public class CarLoansPage extends BasePage {
+
+    private final SelenideElement tabAgreements = $x("//div[contains(text(), 'Agreements')]");
+
+    public CarLoansPage selectAgreementsTab() {
+        tabAgreements.shouldBe(Condition.visible).click();
+        return this;
+    }
+}

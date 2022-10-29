@@ -1,42 +1,43 @@
-//package pages.base;
-//
-//import org.openqa.selenium.By;
-//import org.openqa.selenium.WebDriver;
-//import org.openqa.selenium.WebElement;
-//import org.openqa.selenium.support.ui.ExpectedConditions;
-//import org.openqa.selenium.support.ui.WebDriverWait;
-//import java.time.Duration;
-//
-//import static constants.Constant.TimeoutVariables.EXPLICIT_WAIT;
-//
-//public class BasePage {
-//    public WebDriver driver;
-//    public BasePage(WebDriver driver) {
-//        this.driver = driver;
-//    }
-//
-//    public final By authWidget = By.xpath("//iframe[@src='https://login-widget.privat24.ua/']");
-//
-//    /**
-//     * Navigation to specific URL
-//     */
-//    public void goToUrl(String url) {
-//        driver.get(url);
-//    }
-//
-//    /**
-//     * Wait for visibility element in DOM model
-//     */
-//    public WebElement waitElementIsVisible(WebElement element){
-//        new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT)).until(ExpectedConditions.visibilityOf(element));
-//        return element;
-//    }
-//
-//    /**
-//     * Check is auth frame is visible
-//     */
-//    public void isAuthWidgetPresent(){
-//        WebElement authFrame = driver.findElement(authWidget);
-//        waitElementIsVisible(authFrame);
-//    }
-//}
+package pages.base;
+
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.Keys;
+
+import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selenide.*;
+
+
+public class BasePage {
+
+    private final SelenideElement authWidget = $x("//iframe[@src='https://login-widget.privat24.ua/']");
+
+    /**
+     * Navigation to specific URL
+     */
+    public void goToUrl(String url) {
+        open(url);
+    }
+
+    /**
+     * Method that clean the element of the text and enter text
+     * @param element Selenide element
+     * @param value text
+     */
+    protected void clearAndType(SelenideElement element, String value){
+        while (!element.getAttribute("value").equals(""))
+            element.sendKeys(Keys.BACK_SPACE);
+        element.setValue(value);
+    }
+
+    /**
+     * Check is auth frame is visible
+     */
+    public void isAuthWidgetPresent(){
+        authWidget.shouldBe(Condition.visible);
+    }
+
+    public void checkMessage(String message){
+        $(byText(message)).shouldBe(Condition.visible);
+    }
+}

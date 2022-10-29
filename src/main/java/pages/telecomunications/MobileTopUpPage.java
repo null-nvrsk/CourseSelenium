@@ -1,78 +1,74 @@
-//package pages.telecomunications;
-//
-//import org.junit.jupiter.api.Assertions;
-//import org.openqa.selenium.By;
-//import org.openqa.selenium.Keys;
-//import org.openqa.selenium.WebDriver;
-//import org.openqa.selenium.WebElement;
-//import pages.base.BasePage;
-//
-//public class MobileTopUpPage extends BasePage {
-//
-//    public MobileTopUpPage(WebDriver driver) {
-//        super(driver);
-//    }
-//
-//    private final By buttonWallet = By.xpath("//div[contains(text(), 'My wallet')]");
-//    private final By inputPhoneNumber = By.xpath("//input[@data-qa-node='phone-number']");
-//    private final By inputAmount = By.xpath("//input[@data-qa-node='amount']");
-//    private final By inputCardNumber = By.xpath("//input[@data-qa-node='numberdebitSource']");
-//    private final By inputCardExpDate = By.xpath("//input[@data-qa-node='expiredebitSource']");
-//    private final By inputCardCvv = By.xpath("//input[@data-qa-node='cvvdebitSource']");
-//    private final By buttonAddToCart = By.xpath("//button[@data-qa-node='submit']");
-//    private final By textPaymentDetails = By.xpath("//div[@data-qa-node='details']");
-//
-//
-//    /**
-//     * Choose a card from the wallet
-//     * @return Mobile Top-Up Page Object
-//     */
-//     public MobileTopUpPage selectCardFromWallet(){
-//         driver.findElement(buttonWallet).click();
-//         return this;
-//     }
-//
-//    /**
-//     * Enter phone number excluding country code
-//     * @param number phone number
-//     * @return Mobile Top-Up Page Object
-//     */
-//     public MobileTopUpPage enterPhoneNumber(String number){
-//         driver.findElement(inputPhoneNumber).sendKeys(number);
-//         return this;
-//     }
-//
-//     public MobileTopUpPage enterAmount(String amount){
-//         driver.findElement(inputAmount).sendKeys(Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE);
-//         driver.findElement(inputAmount).sendKeys(amount);
-//         return this;
-//     }
-//
-//    public MobileTopUpPage enterCardNumber(String cardNumber){
-//        driver.findElement(inputCardNumber).sendKeys(cardNumber);
-//        return this;
-//    }
-//
-//    public MobileTopUpPage enterCardExpDate(String expDate){
-//        driver.findElement(inputCardExpDate).sendKeys(expDate);
-//        return this;
-//    }
-//
-//    public MobileTopUpPage enterCardCvv(String cvv){
-//        driver.findElement(inputCardCvv).sendKeys(cvv);
-//        return this;
-//    }
-//
-//    public MobileTopUpPage submitCart(){
-//        driver.findElement(buttonAddToCart).click();
-//        return this;
-//    }
-//
-//    public MobileTopUpPage checkPaymentDetailsIsPresentInTheCart(String expectedText){
-//        WebElement details = driver.findElement(textPaymentDetails);
-//        waitElementIsVisible(details);
-//
-//        Assertions.assertEquals(expectedText, details.getText());
-//        return this;
-//    }
-//}
+package pages.telecomunications;
+
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
+import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.Keys;
+import pages.base.BasePage;
+
+import static com.codeborne.selenide.Selenide.$x;
+
+public class MobileTopUpPage extends BasePage {
+
+    private final SelenideElement buttonWallet = $x("//div[contains(text(), 'My wallet')]");
+    private final SelenideElement inputPhoneNumber = $x("//input[@data-qa-node='phone-number']");
+    private final SelenideElement inputAmount = $x("//input[@data-qa-node='amount']");
+    private final SelenideElement inputCardNumber = $x("//input[@data-qa-node='numberdebitSource']");
+    private final SelenideElement inputCardExpDate = $x("//input[@data-qa-node='expiredebitSource']");
+    private final SelenideElement inputCardCvv = $x("//input[@data-qa-node='cvvdebitSource']");
+    private final SelenideElement buttonAddToCart = $x("//button[@data-qa-node='submit']");
+    private final SelenideElement textPaymentDetails = $x("//div[@data-qa-node='details']");
+
+
+    /**
+     * Choose a card from the wallet
+     * @return Mobile Top-Up Page Object
+     */
+     public MobileTopUpPage selectCardFromWallet(){
+         buttonWallet.shouldBe(Condition.visible).click();
+         return this;
+     }
+
+    /**
+     * Enter phone number excluding country code
+     * @param number phone number
+     * @return Mobile Top-Up Page Object
+     */
+     public MobileTopUpPage enterPhoneNumber(String number){
+         inputPhoneNumber.shouldBe(Condition.visible).sendKeys(number);
+         return this;
+     }
+
+     public MobileTopUpPage enterAmount(String amount){
+         inputAmount.shouldBe(Condition.visible).sendKeys(Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE);
+         inputAmount.shouldBe(Condition.visible).sendKeys(amount);
+         return this;
+     }
+
+    public MobileTopUpPage enterCardNumber(String cardNumber){
+        inputCardNumber.shouldBe(Condition.visible).sendKeys(cardNumber);
+        return this;
+    }
+
+    public MobileTopUpPage enterCardExpDate(String expDate){
+        inputCardExpDate.shouldBe(Condition.visible).sendKeys(expDate);
+        return this;
+    }
+
+    public MobileTopUpPage enterCardCvv(String cvv){
+        inputCardCvv.shouldBe(Condition.visible).sendKeys(cvv);
+        return this;
+    }
+
+    public MobileTopUpPage submitCart(){
+        buttonAddToCart.shouldBe(Condition.visible).click();
+        return this;
+    }
+
+    public MobileTopUpPage checkPaymentDetailsIsPresentInTheCart(String expectedText){
+        textPaymentDetails.shouldBe(Condition.visible);
+
+        Assertions.assertEquals(expectedText, textPaymentDetails.getText());
+        return this;
+    }
+}
